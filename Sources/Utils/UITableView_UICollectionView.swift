@@ -7,13 +7,16 @@
 
 import UIKit
 
+public
 extension UITableView {
-    func dequeueCell<C: UITableViewCell>(ofType type: C.Type) -> C? {
-        dequeueReusableCell(withIdentifier: String(describing: type.self)) as? C
+    func dequeueCell<C: UITableViewCell>(ofType type: C.Type, withIdentifier id: String? = nil) -> C? {
+        let id = id ?? String(describing: type.self)
+        return dequeueReusableCell(withIdentifier: id) as? C
     }
     
-    func dequeueCell<C: UITableViewCell>(ofType type: C.Type, indexPath: IndexPath) -> C? {
-        dequeueReusableCell(withIdentifier: String(describing: type.self), for: indexPath) as? C
+    func dequeueCell<C: UITableViewCell>(ofType type: C.Type, withIdentifier id: String? = nil, indexPath: IndexPath) -> C? {
+        let id = id ?? String(describing: type.self)
+        return dequeueReusableCell(withIdentifier: id, for: indexPath) as? C
     }
     
     func registerNibs(_ cellIDs: String... , bundle: Bundle? = nil) {
@@ -23,9 +26,11 @@ extension UITableView {
     }
 }
 
+public
 extension UICollectionView {
-    func dequeueCell<C: UICollectionViewCell>(ofType type: C.Type, indexPath: IndexPath) -> C? {
-        dequeueReusableCell(withReuseIdentifier: String(describing: type.self), for: indexPath) as? C
+    func dequeueCell<C: UICollectionViewCell>(ofType type: C.Type, withIdentifier id: String? = nil, indexPath: IndexPath) -> C? {
+        let id = id ?? String(describing: type.self)
+        return dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as? C
     }
     
     func registerNibs(_ cellIDs: String... , bundle: Bundle? = nil) {
