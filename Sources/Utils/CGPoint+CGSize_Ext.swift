@@ -12,11 +12,21 @@ protocol ABC {
     var a:CGFloat {get set}
     var b:CGFloat {get set}
     
-    init(a: CGFloat, b: CGFloat)
+    init()
 }
 
 public
 extension ABC {
+    fileprivate init(a: CGFloat, b: CGFloat) {
+        self.init()
+        self.a = a
+        self.b = b
+    }
+    
+    init(_ c:CGFloat) {
+        self.init(a: c, b: c)
+    }
+    
     static func +(_ lhs: Self, _ rhs: Self)-> Self {
         Self(a: lhs.a + rhs.a, b: lhs.b + rhs.b)
     }
@@ -29,20 +39,6 @@ extension ABC {
     static func /(_ lhs: Self, _ rhs: Self)-> Self {
         Self(a: lhs.a / rhs.a, b: lhs.b / rhs.b)
     }
-    
-    static func +(_ lhs: Self, _ rhs: CGFloat)-> Self {
-        Self(a: lhs.a + rhs, b: lhs.b + rhs)
-    }
-    static func -(_ lhs: Self, _ rhs: CGFloat)-> Self {
-        Self(a: lhs.a - rhs, b: lhs.b - rhs)
-    }
-    static func *(_ lhs: Self, _ rhs: CGFloat)-> Self {
-        Self(a: lhs.a * rhs, b: lhs.b * rhs)
-    }
-    static func /(_ lhs: Self, _ rhs: CGFloat)-> Self {
-        Self(a: lhs.a / rhs, b: lhs.b / rhs)
-    }
-    
     
     static func +=(_ lhs: inout Self, _ rhs: Self) {
         lhs = lhs+rhs
@@ -57,19 +53,6 @@ extension ABC {
         lhs = lhs/rhs
     }
     
-    static func +=(_ lhs: inout Self, _ rhs: CGFloat) {
-        lhs = lhs+rhs
-    }
-    static func -=(_ lhs: inout Self, _ rhs: CGFloat) {
-        lhs = lhs-rhs
-    }
-    static func *=(_ lhs: inout Self, _ rhs: CGFloat) {
-        lhs = lhs*rhs
-    }
-    static func /=(_ lhs: inout Self, _ rhs: CGFloat) {
-        lhs = lhs/rhs
-    }
-    
     func convert<T: ABC>(to newType: T.Type) -> T {
         newType.init(a: a, b: b)
     }
@@ -81,10 +64,6 @@ extension ABC {
 
 
 extension CGPoint: ABC {
-    public init(a: CGFloat, b: CGFloat) {
-        self.init(x: a, y: b)
-    }
-    
     public var a: CGFloat {
         get { x }
         set { x = newValue }
@@ -98,10 +77,6 @@ extension CGPoint: ABC {
 
 
 extension CGSize: ABC {
-    public init(a: CGFloat, b: CGFloat) {
-        self.init(width: a, height: b)
-    }
-    
     public var a: CGFloat {
         get { width }
         set { width = newValue }

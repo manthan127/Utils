@@ -12,7 +12,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        CGPointZero + CGPoint()
+        _ = CGPointZero + CGPoint()
+        
+        let name = UUID()
+        let x: Int? = UserDefaults.standard["myKey"]
+        UserDefaults.standard["myKey"] = name
+        let y = UserDefaults.standard["myKey"] ?? "abc"
+        print(x ?? -123, y)
     }
 }
