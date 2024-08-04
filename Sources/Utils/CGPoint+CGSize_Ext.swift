@@ -23,7 +23,7 @@ extension ABC {
         self.b = b
     }
     
-    init(_ c:CGFloat) {
+    init(_ c: CGFloat) { 
         self.init(a: c, b: c)
     }
     
