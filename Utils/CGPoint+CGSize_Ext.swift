@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol ABC {
+protocol Dimension2D {
     var a:CGFloat {get set}
     var b:CGFloat {get set}
     
     init()
 }
 
-extension ABC {
+extension Dimension2D {
     fileprivate init(a: CGFloat, b: CGFloat) {
         self.init()
         self.a = a
@@ -51,7 +51,7 @@ extension ABC {
         lhs = lhs/rhs
     }
     
-    func convert<T: ABC>(to newType: T.Type) -> T {
+    func convert<T: Dimension2D>(to newType: T.Type) -> T {
         newType.init(a: a, b: b)
     }
     
@@ -61,7 +61,7 @@ extension ABC {
 }
 
 
-extension CGPoint: ABC {
+extension CGPoint: Dimension2D {
     public var a: CGFloat {
         get { x }
         set { x = newValue }
@@ -74,7 +74,7 @@ extension CGPoint: ABC {
 }
 
 
-extension CGSize: ABC {
+extension CGSize: Dimension2D {
     public var a: CGFloat {
         get { width }
         set { width = newValue }

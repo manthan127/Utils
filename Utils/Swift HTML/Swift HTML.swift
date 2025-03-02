@@ -78,26 +78,3 @@ struct span {
         return "<span>\(html)</span>"
     }
 }
-
-@resultBuilder
-struct HTMLBuilder{
-    static func buildOptional(_ components: [any HTML]?) -> [any HTML] {
-        components ?? []
-    }
-    
-    static func buildEither(first component: [any HTML]) -> [any HTML] {
-        component
-    }
-    
-    static func buildEither(second component: [any HTML]) -> [any HTML] {
-        component
-    }
-    
-    static func buildBlock(_ components: [any HTML]...) -> [any HTML] {
-        components.flatMap{$0}
-    }
-    
-    static func buildExpression(_ compo: any HTML)-> [any HTML] {
-        [compo]
-    }
-}
