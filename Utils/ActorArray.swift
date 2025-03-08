@@ -85,7 +85,7 @@ actor ActorArray<Element: Any>: ExpressibleByArrayLiteral {
 }
 
 //extension ActorArray: Sequence {
-//    struct Iterator: IteratorProtocol {
+//    struct Iterator: IteratorProtocol {
 //        private var i: IndexingIterator<[Element]>
 //        
 //        init(_ array: [Element]) {

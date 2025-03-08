@@ -10,6 +10,12 @@
 		F40512B72D745B2B004A6789 /* ActorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40512B52D745B2B004A6789 /* ActorArray.swift */; };
 		F40512B82D745B2B004A6789 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40512B62D745B2B004A6789 /* ApplicationError.swift */; };
 		F46C06082D743F030059F1C4 /* HTMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46C06072D743F030059F1C4 /* HTMLBuilder.swift */; };
+		F4AB37082D7C95C9002545E1 /* Alertify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AB37042D7C95C9002545E1 /* Alertify.swift */; };
+		F4AB37092D7C95C9002545E1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AB37052D7C95C9002545E1 /* Alert.swift */; };
+		F4AB370A2D7C95C9002545E1 /* ProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AB37062D7C95C9002545E1 /* ProcessView.swift */; };
+		F4AB370B2D7C95C9002545E1 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AB37072D7C95C9002545E1 /* Sheet.swift */; };
+		F4AB370E2D7C9609002545E1 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = F4AB370C2D7C9609002545E1 /* Documentation.docc */; };
+		F4AB370F2D7C9609002545E1 /* AlertifySwift.docc in Sources */ = {isa = PBXBuildFile; fileRef = F4AB370D2D7C9609002545E1 /* AlertifySwift.docc */; };
 		F4ED50AC2D720D2B006E2A71 /* UtilsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED50AB2D720D2B006E2A71 /* UtilsApp.swift */; };
 		F4ED50AE2D720D2B006E2A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED50AD2D720D2B006E2A71 /* ContentView.swift */; };
 		F4ED50B02D720D2D006E2A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4ED50AF2D720D2D006E2A71 /* Assets.xcassets */; };
@@ -26,6 +32,12 @@
 		F40512B52D745B2B004A6789 /* ActorArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActorArray.swift; sourceTree = "<group>"; };
 		F40512B62D745B2B004A6789 /* ApplicationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
 		F46C06072D743F030059F1C4 /* HTMLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLBuilder.swift; sourceTree = "<group>"; };
+		F4AB37042D7C95C9002545E1 /* Alertify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alertify.swift; sourceTree = "<group>"; };
+		F4AB37052D7C95C9002545E1 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		F4AB37062D7C95C9002545E1 /* ProcessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessView.swift; sourceTree = "<group>"; };
+		F4AB37072D7C95C9002545E1 /* Sheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		F4AB370C2D7C9609002545E1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		F4AB370D2D7C9609002545E1 /* AlertifySwift.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AlertifySwift.docc; sourceTree = "<group>"; };
 		F4ED50A82D720D2B006E2A71 /* Utils.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Utils.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4ED50AB2D720D2B006E2A71 /* UtilsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsApp.swift; sourceTree = "<group>"; };
 		F4ED50AD2D720D2B006E2A71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F4AB37032D7C95B9002545E1 /* Alertify */ = {
+			isa = PBXGroup;
+			children = (
+				F4AB37052D7C95C9002545E1 /* Alert.swift */,
+				F4AB37042D7C95C9002545E1 /* Alertify.swift */,
+				F4AB37062D7C95C9002545E1 /* ProcessView.swift */,
+				F4AB37072D7C95C9002545E1 /* Sheet.swift */,
+			);
+			path = Alertify;
+			sourceTree = "<group>";
+		};
 		F4ED509F2D720D2B006E2A71 = {
 			isa = PBXGroup;
 			children = (
@@ -77,7 +100,10 @@
 				F4ED50BC2D720D5B006E2A71 /* UserDefaults.swift */,
 				F40512B52D745B2B004A6789 /* ActorArray.swift */,
 				F40512B62D745B2B004A6789 /* ApplicationError.swift */,
+				F4AB37032D7C95B9002545E1 /* Alertify */,
 				F4ED50C32D720F67006E2A71 /* Swift HTML */,
+				F4AB370D2D7C9609002545E1 /* AlertifySwift.docc */,
+				F4AB370C2D7C9609002545E1 /* Documentation.docc */,
 				F4ED50AF2D720D2D006E2A71 /* Assets.xcassets */,
 				F4ED50B12D720D2D006E2A71 /* Preview Content */,
 			);
@@ -172,14 +198,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4AB370B2D7C95C9002545E1 /* Sheet.swift in Sources */,
 				F40512B82D745B2B004A6789 /* ApplicationError.swift in Sources */,
+				F4AB37082D7C95C9002545E1 /* Alertify.swift in Sources */,
+				F4AB370E2D7C9609002545E1 /* Documentation.docc in Sources */,
 				F4ED50C52D720F7A006E2A71 /* Header.swift in Sources */,
 				F40512B72D745B2B004A6789 /* ActorArray.swift in Sources */,
 				F4ED50AE2D720D2B006E2A71 /* ContentView.swift in Sources */,
+				F4AB37092D7C95C9002545E1 /* Alert.swift in Sources */,
 				F4ED50C22D720DA6006E2A71 /* Swift HTML.swift in Sources */,
 				F4ED50BF2D720D5B006E2A71 /* CGPoint+CGSize_Ext.swift in Sources */,
 				F4ED50C02D720D5B006E2A71 /* UserDefaults.swift in Sources */,
 				F4ED50BD2D720D5B006E2A71 /* UIView.swift in Sources */,
+				F4AB370F2D7C9609002545E1 /* AlertifySwift.docc in Sources */,
+				F4AB370A2D7C95C9002545E1 /* ProcessView.swift in Sources */,
 				F46C06082D743F030059F1C4 /* HTMLBuilder.swift in Sources */,
 				F4ED50BE2D720D5B006E2A71 /* UITableView_UICollectionView.swift in Sources */,
 				F4ED50AC2D720D2B006E2A71 /* UtilsApp.swift in Sources */,
