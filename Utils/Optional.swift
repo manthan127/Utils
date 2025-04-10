@@ -16,7 +16,7 @@ extension Optional {
 
 infix operator ???
 extension Optional {
-    static func ???<A>(_ lhs: Optional<A>, _ rhs: Error) throws -> A {
+    static func ???(_ lhs: Wrapped?, _ rhs: Error) throws -> Wrapped {
         if let lhs {
             return lhs
         }
