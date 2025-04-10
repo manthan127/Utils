@@ -1,24 +1,11 @@
 //
-//  extentions.swift
-//  chess
+//  Color.swift
+//  Utils
 //
-//  Created by mac on 21/11/22.
+//  Created by Home on 10/04/25.
 //
 
 import SwiftUI
-
-extension View {
-    func geometry(_ completion: @escaping (GeometryProxy)->()) -> some View {
-        self.background (
-            GeometryReader { geo in
-                Color.clear
-                    .onAppear {
-                        completion(geo)
-                    }
-            }
-        )
-    }
-}
 
 extension Color {
     
