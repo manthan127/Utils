@@ -13,3 +13,14 @@ extension Optional {
         throw error
     }
 }
+
+infix operator ???
+extension Optional {
+    static func ???<A>(_ lhs: Optional<A>, _ rhs: Error) throws -> A {
+        if let lhs {
+            return lhs
+        }
+        
+        throw rhs
+    }
+}
