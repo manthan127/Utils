@@ -8,12 +8,15 @@
 import SwiftUI
 
 extension View {
-    func geometry(_ completion: @escaping (GeometryProxy)->()) -> some View {
+    func geometry(_ completion: @escaping (CGSize)->()) -> some View {
         self.background (
-            GeometryReader { geo in
+            GeometryReader { proxy in
                 Color.clear
                     .onAppear {
-                        completion(geo)
+                        completion(proxy.size)
+                    }
+                    .onChange(of: proxy.size) { _ in
+                        completion(proxy.size)
                     }
             }
         )
@@ -21,7 +24,6 @@ extension View {
 }
 
 extension View {
-    
     @ViewBuilder
     func `if`<V: View>(_ condition: Bool, @ViewBuilder _ view: (Self)->V)-> some View {
         if condition {
@@ -52,6 +54,34 @@ extension View {
         }
         else {
             `else`(self)
+        }
+    }
+}
+
+#Preview {
+    Temp()
+}
+
+struct Temp: View {
+    @State var Mul: CGFloat = 1
+    
+    var body: some View {
+        HStack(spacing: -20) {
+            Capsule()
+                .fill(.red)
+                .rotationEffect(Angle(degrees: -15 * Mul), anchor: .trailing)
+            Capsule()
+                .fill(.green)
+                .rotationEffect(Angle(degrees: 15 * Mul), anchor: .leading)
+                
+        }
+        .compositingGroup()
+        .frame(width: 400, height: 20)
+        .opacity(0.5)
+        .onTapGesture {
+            withAnimation(.linear(duration: 1)) {
+                Mul *= -1
+            }
         }
     }
 }
