@@ -24,6 +24,12 @@ extension View {
 }
 
 extension View {
+    
+    @ViewBuilder
+    func quickModifier<V: View>(@ViewBuilder _ view: (Self)->V) -> some View {
+        view(self)
+    }
+    
     @ViewBuilder
     func `if`<V: View>(_ condition: Bool, @ViewBuilder _ view: (Self)->V)-> some View {
         if condition {
@@ -58,30 +64,15 @@ extension View {
     }
 }
 
-#Preview {
-    Temp()
-}
 
-struct Temp: View {
-    @State var Mul: CGFloat = 1
-    
-    var body: some View {
-        HStack(spacing: -20) {
-            Capsule()
-                .fill(.red)
-                .rotationEffect(Angle(degrees: -15 * Mul), anchor: .trailing)
-            Capsule()
-                .fill(.green)
-                .rotationEffect(Angle(degrees: 15 * Mul), anchor: .leading)
-                
-        }
-        .compositingGroup()
-        .frame(width: 400, height: 20)
-        .opacity(0.5)
-        .onTapGesture {
-            withAnimation(.linear(duration: 1)) {
-                Mul *= -1
-            }
+@available(iOS 16.0, *)
+extension View {
+    func asHighQualityUIImage(size: CGSize, scale: CGFloat = UIScreen.main.scale) async -> UIImage? {
+        await MainActor.run {
+            let renderer = ImageRenderer(content: self)
+            renderer.scale = scale
+            renderer.proposedSize = .init(size)
+            return renderer.uiImage
         }
     }
 }

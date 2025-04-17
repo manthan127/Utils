@@ -26,49 +26,35 @@ public class Defaults {
         self.userDefaults = suite
     }
     
-    public func set<E: Encodable>(_ object: E?, forKey key: String, _ onError: ((Error)->())? = nil) {
+    public func set<E: Encodable>(_ object: E?, forKey key: String) throws {
         if object == nil {
             return removeObject(forKey: key)
         }
-        do {
-            let data = try JSONEncoder().encode(object)
-            userDefaults.set(data, forKey: key)
-        } catch {
-            onError?(error)
-        }
+        let data = try object.encode()
+        userDefaults.set(data, forKey: key)
     }
     
     public func removeObject(forKey key: String) {
         userDefaults.removeObject(forKey: key)
     }
     
-    public func object<D: Decodable>(forType type: D.Type, forKey key: String, _ onError: ((Error)->())? = nil)-> D? {
-        guard let data = userDefaults.data(forKey: key) else {return nil}
-        do {
-            return try JSONDecoder().decode(D.self, from: data)
-        } catch {
-            onError?(error)
-            return nil
-        }
-    }
-    
     public func object<D: Decodable>(forType type: D.Type, forKey key: String) throws -> D? {
         try userDefaults.data(forKey: key).map({
-            try JSONDecoder().decode(D.self, from: $0)
+            try $0.decode(D.self)
         })
     }
     
-    public subscript<E: Codable>(key: String, onError: ((Error)->())? = nil) -> E? {
+    public subscript<E: Codable>(key: String) -> E? {
         get {
-            object(forType: E.self, forKey: key, onError)
+            try? object(forType: E.self, forKey: key)
         } set {
-            set(newValue, forKey: key, onError)
+            try? set(newValue, forKey: key)
         }
     }
     
-    public subscript<E: Codable>(key: String) -> E? {
+    public subscript<D: Decodable>(key: String) -> D? {
         get throws {
-            try object(forType: E.self, forKey: key)
+            try object(forType: D.self, forKey: key)
         }
     }
 }
