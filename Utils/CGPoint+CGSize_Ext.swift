@@ -51,7 +51,7 @@ extension Dimension2D {
         lhs = lhs/rhs
     }
     
-    func convert<T: Dimension2D>(to newType: T.Type) -> T {
+    func `as`<T: Dimension2D>(_ newType: T.Type) -> T {
         newType.init(a: a, b: b)
     }
     

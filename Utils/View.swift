@@ -67,10 +67,10 @@ extension View {
 
 @available(iOS 16.0, *)
 extension View {
-    func asHighQualityUIImage(size: CGSize, scale: CGFloat = UIScreen.main.scale) async -> UIImage? {
+    func asHighQualityUIImage(size: CGSize, scale: CGFloat? = nil) async -> UIImage? {
         await MainActor.run {
             let renderer = ImageRenderer(content: self)
-            renderer.scale = scale
+            renderer.scale = scale ?? UIScreen.main.scale
             renderer.proposedSize = .init(size)
             return renderer.uiImage
         }
