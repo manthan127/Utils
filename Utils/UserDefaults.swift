@@ -6,13 +6,58 @@
 //
 
 import Foundation
-
+/// A strongly-typed wrapper for raw `String` keys used with `UserDefaults`.
+///
+/// `UserDefaultsKeys` helps avoid hardcoding strings directly into your `UserDefaults` code,
+/// improving type safety and reducing errors from mistyped key names.
+///
+/// You can extend `UserDefaultsKeys` with static properties representing each key,
+/// making it easy and consistent to reuse keys throughout your application.
+///
+/// ### Usage:
+///
+/// Define your custom keys as static properties in an extension:
+/// ```swift
+/// extension UserDefaultsKeys {
+///     static var settings: Self {
+///         .init(rawValue: "settings")
+///     }
+///
+///     static var username: Self {
+///         .init(rawValue: "username")
+///     }
+/// }
+/// ```
+///
+/// Use these keys to store or retrieve Codable values from `UserDefaults`:
+/// ```swift
+/// struct Settings: Codable {
+///     var darkModeEnabled: Bool
+///     var preferredLanguage: String
+/// }
+///
+/// let settings = Settings(darkModeEnabled: true, preferredLanguage: "en")
+///
+/// // Save to UserDefaults
+/// UserDefaults.standard[.settings] = settings
+///
+/// // Read from UserDefaults with error handling
+/// let loadedSettings: Settings? = UserDefaults.standard[.settings, onError: { error in
+///     print("Failed to decode Settings:", error)
+/// }]
+///
+/// // Read from UserDefaults and throw on failure
+/// do {
+///     let settings: Settings? = try UserDefaults.standard[.settings]
+/// } catch {
+///     print("Decoding error: \(error)")
+/// }
+/// ```
 struct UserDefaultsKeys: RawRepresentable {
     init(rawValue: String) {
         self.rawValue = rawValue
     }
     var rawValue: String
-
 }
 
 extension UserDefaults {
@@ -34,7 +79,7 @@ extension UserDefaults {
         return try JSONDecoder().decode(D.self, from: data)
     }
     
-    private func object<D: Decodable>(forType type: D.Type, forKey key: UserDefaultsKeys, _ onError: ((Error)->())?)-> D? {
+    private func object<D: Decodable>(forType type: D.Type, forKey key: UserDefaultsKeys, onError: ((Error)->())?)-> D? {
         do {
             return try object(forType: D.self, forKey: key)
         } catch {
@@ -45,7 +90,7 @@ extension UserDefaults {
     
     subscript<E: Codable>(key: UserDefaultsKeys, onError: ((Error)->())? = nil) -> E? {
         get {
-            object(forType: E.self, forKey: key, onError)
+            object(forType: E.self, forKey: key, onError: onError)
         } set {
             setValue(newValue, forKey: key, onError)
         }
