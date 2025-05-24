@@ -61,22 +61,25 @@ struct UserDefaultsKeys: RawRepresentable {
 }
 
 extension UserDefaults {
+    
+    func removeObject(forKey key: UserDefaultsKeys) {
+        removeObject(forKey: key.rawValue)
+    }
+    
     private func setValue<E: Encodable>(_ object: E?, forKey key: UserDefaultsKeys, _ onError: ((Error)->())?) {
-        if object == nil {
-            return removeObject(forKey: key.rawValue)
-        }
-        do {
-            let data = try JSONEncoder().encode(object)
-            self.set(data, forKey: key.rawValue)
-        } catch {
-            onError?(error)
+        if let object {
+            do {
+                self.set(try object.jsonEncoded(), forKey: key.rawValue)
+            } catch {
+                onError?(error)
+            }
+        } else {
+            removeObject(forKey: key)
         }
     }
 
     private func object<D: Decodable>(forType type: D.Type, forKey key: UserDefaultsKeys) throws -> D? {
-        guard let data = self.data(forKey: key.rawValue) else {return nil}
-        
-        return try JSONDecoder().decode(D.self, from: data)
+        try self.data(forKey: key.rawValue)?.jsonDecoded(D.self)
     }
     
     private func object<D: Decodable>(forType type: D.Type, forKey key: UserDefaultsKeys, onError: ((Error)->())?)-> D? {
@@ -88,17 +91,17 @@ extension UserDefaults {
         }
     }
     
-    subscript<E: Codable>(key: UserDefaultsKeys, onError: ((Error)->())? = nil) -> E? {
+    subscript<C: Codable>(key: UserDefaultsKeys, onError: ((Error)->())? = nil) -> C? {
         get {
-            object(forType: E.self, forKey: key, onError: onError)
+            object(forType: C.self, forKey: key, onError: onError)
         } set {
             setValue(newValue, forKey: key, onError)
         }
     }
     
-    subscript<E: Codable>(key: UserDefaultsKeys) -> E? {
+    subscript<D: Decodable>(key: UserDefaultsKeys) -> D? {
         get throws {
-            try object(forType: E.self, forKey: key)
+            try object(forType: D.self, forKey: key)
         }
     }
 }
