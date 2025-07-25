@@ -35,8 +35,8 @@ extension URL {
         return try children(predicate: \.hasDirectoryPath)
     }
     
-    func childImages() throws -> [URL] {
-        return try children(predicate: {$0.conformsTo(type: .image)})
+    func childFiles() throws -> [URL] {
+        return try children(predicate: \.isFileURL)
     }
     
     func children(
@@ -52,14 +52,6 @@ extension URL {
     var memorySpace: Int64 {
         let attrs = try? FileManager.default.attributesOfItem(atPath: self.path(percentEncoded: false))
         return attrs?[.size] as? Int64 ?? 0
-    }
-    
-    func contentsJson()-> [String: Any]? {
-        let contents = appendingPathComponent("Contents", conformingTo: .json)
-        if let data = try? Data(contentsOf: contents) {
-            return try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-        }
-        return nil
     }
 
     // MARK: - filetype checks
