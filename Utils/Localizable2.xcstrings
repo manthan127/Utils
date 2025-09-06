@@ -1,0 +1,20 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "HEllo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nihao"
+          }
+        }
+      }
+    },
+    "to do loo" : {
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.0"
+}
