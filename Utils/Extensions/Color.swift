@@ -13,12 +13,17 @@ extension Color {
         Color(hue: .random(in: 0...1), saturation: 1, brightness: 1)
     }
     
-    init(hex: String) {
+    init(hax: String) {
+        var hax = hax
+        if hax.hasPrefix("#") {
+            hax = String(hax.dropFirst())
+        }
+        
         var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
+        Scanner(string: hax).scanHexInt64(&int)
         
         let a, r, g, b: UInt64
-        switch hex.count {
+        switch hax.count {
         case 6:
             (r, g, b, a) = (int >> 16, int >> 8 & 0xFF, int & 0xFF, 255)
         case 8:
