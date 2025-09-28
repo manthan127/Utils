@@ -34,6 +34,8 @@ extension View {
     func `if`<V: View>(_ condition: Bool, @ViewBuilder _ view: (Self)->V)-> some View {
         if condition {
             view(self)
+        } else {
+            self
         }
     }
     
@@ -41,6 +43,8 @@ extension View {
     func `if`<A, V: View>(`let` optinal: Optional<A>, @ViewBuilder _ view: (Self, A)->V)-> some View {
         if let optinal {
             view(self, optinal)
+        } else {
+            self
         }
     }
     
