@@ -23,6 +23,8 @@
 		F4AB370B2D7C95C9002545E1 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AB37072D7C95C9002545E1 /* Sheet.swift */; };
 		F4AB370E2D7C9609002545E1 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = F4AB370C2D7C9609002545E1 /* Documentation.docc */; };
 		F4AB370F2D7C9609002545E1 /* AlertifySwift.docc in Sources */ = {isa = PBXBuildFile; fileRef = F4AB370D2D7C9609002545E1 /* AlertifySwift.docc */; };
+		F4ACC3922F0C03F6005BD0B2 /* AdaptiveSheetHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACC3912F0C03F6005BD0B2 /* AdaptiveSheetHeightModifier.swift */; };
+		F4ACC3952F0C0448005BD0B2 /* CGFloat++.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ACC3942F0C0448005BD0B2 /* CGFloat++.swift */; };
 		F4B723C32E6C262A009547F1 /* NSAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B723C22E6C262A009547F1 /* NSAlert.swift */; };
 		F4B723C62E6C2747009547F1 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B723C52E6C2747009547F1 /* Array.swift */; };
 		F4B9A9582E3BCFB300D0888F /* Localizable2.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F4B9A9572E3BCFB300D0888F /* Localizable2.xcstrings */; };
@@ -58,6 +60,8 @@
 		F4AB37072D7C95C9002545E1 /* Sheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
 		F4AB370C2D7C9609002545E1 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		F4AB370D2D7C9609002545E1 /* AlertifySwift.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AlertifySwift.docc; sourceTree = "<group>"; };
+		F4ACC3912F0C03F6005BD0B2 /* AdaptiveSheetHeightModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveSheetHeightModifier.swift; sourceTree = "<group>"; };
+		F4ACC3942F0C0448005BD0B2 /* CGFloat++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat++.swift"; sourceTree = "<group>"; };
 		F4B723C22E6C262A009547F1 /* NSAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAlert.swift; sourceTree = "<group>"; };
 		F4B723C52E6C2747009547F1 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		F4B9A9572E3BCFB300D0888F /* Localizable2.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable2.xcstrings; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 			path = Alertify;
 			sourceTree = "<group>";
 		};
+		F4ACC3932F0C0416005BD0B2 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				F4ACC3912F0C03F6005BD0B2 /* AdaptiveSheetHeightModifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
 		F4B723C42E6C26E6009547F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 				F43C13E22DA80BD300373FF6 /* Color.swift */,
 				F49380DE2DA2A0F300385054 /* Optional.swift */,
 				F41438D62E00821E007D0433 /* URL.swift */,
+				F4ACC3942F0C0448005BD0B2 /* CGFloat++.swift */,
 				F4ED50BC2D720D5B006E2A71 /* UserDefaults.swift */,
 				F4B723C52E6C2747009547F1 /* Array.swift */,
 			);
@@ -150,6 +163,7 @@
 				F40CFEE42DCF839A002A63D7 /* ThrowingTask */,
 				F4B723C22E6C262A009547F1 /* NSAlert.swift */,
 				F4E133532DB14CCA00F8E9D9 /* Data.swift */,
+				F4ACC3932F0C0416005BD0B2 /* ViewModifier */,
 				F4B723C42E6C26E6009547F1 /* Extensions */,
 				F4E133552DB15DC500F8E9D9 /* DecodedFromString.swift */,
 				F40512B52D745B2B004A6789 /* ActorArray.swift */,
@@ -267,6 +281,7 @@
 				F4AB370E2D7C9609002545E1 /* Documentation.docc in Sources */,
 				F4ED50C52D720F7A006E2A71 /* Header.swift in Sources */,
 				F4B723C62E6C2747009547F1 /* Array.swift in Sources */,
+				F4ACC3952F0C0448005BD0B2 /* CGFloat++.swift in Sources */,
 				F40512B72D745B2B004A6789 /* ActorArray.swift in Sources */,
 				F4ED50AE2D720D2B006E2A71 /* ContentView.swift in Sources */,
 				F4AB37092D7C95C9002545E1 /* Alert.swift in Sources */,
@@ -279,6 +294,7 @@
 				F4AB370F2D7C9609002545E1 /* AlertifySwift.docc in Sources */,
 				F4AB370A2D7C95C9002545E1 /* ProcessView.swift in Sources */,
 				F46C06082D743F030059F1C4 /* HTMLBuilder.swift in Sources */,
+				F4ACC3922F0C03F6005BD0B2 /* AdaptiveSheetHeightModifier.swift in Sources */,
 				F4E133562DB15DC500F8E9D9 /* DecodedFromString.swift in Sources */,
 				F4ED50BE2D720D5B006E2A71 /* UITableView_UICollectionView.swift in Sources */,
 				F49380DF2DA2A0F300385054 /* Optional.swift in Sources */,
