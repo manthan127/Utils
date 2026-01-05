@@ -14,20 +14,6 @@ extension Optional {
     }
 }
 
-extension Optional where Wrapped == String {
-    var nonEmptyTrimmed: String? {
-        if let self {
-            if self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                nil
-            } else {
-                self
-            }
-        } else {
-            nil
-        }
-    }
-}
-
 infix operator ???
 extension Optional {
     static func ???(_ lhs: Wrapped?, _ rhs: Error) throws -> Wrapped {
