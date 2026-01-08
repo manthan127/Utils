@@ -24,8 +24,6 @@ extension View {
 }
 
 extension View {
-    
-    @ViewBuilder
     func quickModifier<V: View>(@ViewBuilder _ view: (Self)->V) -> some View {
         view(self)
     }
