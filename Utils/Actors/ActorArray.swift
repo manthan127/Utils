@@ -7,7 +7,7 @@
 
 import Foundation
 
-actor ActorArray<Element: Any>: ExpressibleByArrayLiteral {
+actor ActorArray<Element>: ExpressibleByArrayLiteral {
     init() {
         array = []
     }
@@ -31,9 +31,7 @@ actor ActorArray<Element: Any>: ExpressibleByArrayLiteral {
     }
     
     subscript(_ index: Int)-> Element {
-        get {
-            array[index]
-        }
+        array[index]        
     }
     
     func set(value: Element, at index: Int) {
