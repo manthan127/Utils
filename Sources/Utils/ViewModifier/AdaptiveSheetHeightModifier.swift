@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct AdaptiveSheetHeightModifier: ViewModifier {
     @State private var height: CGFloat = 0
     var detents: Set<PresentationDetent> = []
@@ -19,7 +20,7 @@ struct AdaptiveSheetHeightModifier: ViewModifier {
             .presentationDetents(detents.union([.height(height)]))
     }
 }
-
+@available(iOS 16.0, *)
 extension View {
     public func adaptiveSheetHeight(detents: Set<PresentationDetent> = []) -> some View {
         modifier(AdaptiveSheetHeightModifier(detents: detents))

@@ -5,6 +5,8 @@ import PackageDescription
 
 let package = Package(
     name: "Utils",
+    defaultLocalization: "en",
+    platforms: [ .iOS(.v13) ], // TODO: - add more platforms
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
