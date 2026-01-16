@@ -13,25 +13,25 @@ extension Color {
         Color(hue: .random(in: 0...1), saturation: 1, brightness: 1)
     }
     
-    init(hax: String) {
-        var hax = hax
-        if hax.hasPrefix("#") {
-            hax = String(hax.dropFirst())
+    init(hex: String) {
+        var hex = hex
+        if hex.hasPrefix("#") {
+            hex = String(hex.dropFirst())
         }
         
         var int: UInt64 = 0
-        Scanner(string: hax).scanHexInt64(&int)
+        Scanner(string: hex).scanHexInt64(&int)
         
         let a, r, g, b: UInt64
-        switch hax.count {
+        switch hex.count {
         case 6:
             (r, g, b, a) = (int >> 16, int >> 8 & 0xFF, int & 0xFF, 255)
         case 8:
-            (r, g, b, a) = (int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF, int >> 24)
+            (r, g, b, a) = (int >> 24 & 0xFF, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
             self = .clear; return
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,
