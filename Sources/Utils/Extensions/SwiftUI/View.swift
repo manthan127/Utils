@@ -78,3 +78,17 @@ extension View {
         }
     }
 }
+
+extension View {
+    func onTapGesture<Success>(operation: sending @escaping @isolated(any) () async  -> Success) -> some View {
+        self.onTapGesture {
+            Task(operation: operation)
+        }
+    }
+    
+    func onTapGesture<Success, Failure: Error>(operation: sending @escaping @isolated(any) () async throws -> Success) -> some View {
+        self.onTapGesture {
+            Task(operation: operation)
+        }
+    }
+}
