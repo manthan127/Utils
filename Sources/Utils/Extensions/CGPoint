@@ -1,0 +1,56 @@
+import CoreGraphics
+
+extension CGPoint {
+    mutating func horizontallyClamp<R: RangeProtocol>(inside range: R) where R.Bound == CGFloat {
+        self.x.clamp(inside: range)
+    }
+    
+    func horizontallyClamped<R: RangeProtocol>(inside range: R) -> CGPoint where R.Bound == CGFloat {
+        var copy = self
+        copy.horizontallyClamp(inside: range)
+        return copy
+    }
+    
+    mutating func verticallyClamp<R: RangeProtocol>(inside range: R) where R.Bound == CGFloat {
+        self.y.clamp(inside: range)
+    }
+    
+    func verticallyClamped<R: RangeProtocol>(inside range: R) -> CGPoint where R.Bound == CGFloat {
+        var copy = self
+        copy.verticallyClamp(inside: range)
+        return copy
+    }
+    
+    
+    mutating func clamp(inside rect: CGRect) {
+        horizontallyClamp(inside: rect.minX...rect.maxX)
+        verticallyClamp(inside: rect.minY...rect.maxY)
+    }
+    
+    func clamped(inside rect: CGRect) -> CGPoint {
+        var copy = self
+        copy.clamp(inside: rect)
+        return copy
+    }
+}
+
+extension Comparable {
+    mutating func clamp<R: RangeProtocol>(inside range: R) where R.Bound == Self {
+        self = max(min(self, range.upperBound), range.lowerBound)
+    }
+    
+    func clamped<R: RangeProtocol>(inside range: R) -> Self where R.Bound == Self {
+        var copy = self
+        copy.clamp(inside: range)
+        return copy
+    }
+}
+
+protocol RangeProtocol {
+    associatedtype Bound: Comparable
+    var lowerBound: Bound {get}
+    var upperBound: Bound {get}
+}
+
+extension ClosedRange: RangeProtocol {}
+extension Range: RangeProtocol {}
