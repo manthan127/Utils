@@ -1,6 +1,7 @@
 import CoreGraphics
 
 extension CGPoint {
+    // MARK: - Horizontal
     mutating func horizontallyClamp<R: RangeProtocol>(inside range: R) where R.Bound == CGFloat {
         self.x.clamp(inside: range)
     }
@@ -10,7 +11,8 @@ extension CGPoint {
         copy.horizontallyClamp(inside: range)
         return copy
     }
-    
+
+    // MARK: - Vertical
     mutating func verticallyClamp<R: RangeProtocol>(inside range: R) where R.Bound == CGFloat {
         self.y.clamp(inside: range)
     }
@@ -21,7 +23,7 @@ extension CGPoint {
         return copy
     }
     
-    
+    // MARK: - Rect
     mutating func clamp(inside rect: CGRect) {
         horizontallyClamp(inside: rect.minX...rect.maxX)
         verticallyClamp(inside: rect.minY...rect.maxY)
@@ -36,13 +38,11 @@ extension CGPoint {
 
 extension Comparable {
     mutating func clamp<R: RangeProtocol>(inside range: R) where R.Bound == Self {
-        self = max(min(self, range.upperBound), range.lowerBound)
+        self = self.clamped(inside: range)
     }
     
     func clamped<R: RangeProtocol>(inside range: R) -> Self where R.Bound == Self {
-        var copy = self
-        copy.clamp(inside: range)
-        return copy
+        max(min(self, range.upperBound), range.lowerBound)
     }
 }
 
