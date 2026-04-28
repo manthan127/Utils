@@ -8,20 +8,21 @@
 import Foundation
 
 protocol Dimension2D {
-    var a:CGFloat {get set}
-    var b:CGFloat {get set}
+    associatedtype V: FloatingPoint
+    var a:V {get set}
+    var b:V {get set}
     
     init()
 }
 
 extension Dimension2D {
-    fileprivate init(a: CGFloat, b: CGFloat) {
+    fileprivate init(a: V, b: V) {
         self.init()
         self.a = a
         self.b = b
     }
     
-    init(_ c: CGFloat) { 
+    init(_ c: V) {
         self.init(a: c, b: c)
     }
     
@@ -51,12 +52,40 @@ extension Dimension2D {
         lhs = lhs/rhs
     }
     
-    func `as`<T: Dimension2D>(_ newType: T.Type) -> T {
+    func `as`<T: Dimension2D>(_ newType: T.Type) -> T where T.V == V {
         newType.init(a: a, b: b)
     }
     
     mutating func invert() {
         (a,b) = (b,a)
+    }
+}
+
+extension Dimension2D {
+    static func +(_ lhs: Self, _ rhs: V)-> Self {
+        lhs + Self.init(rhs)
+    }
+    static func -(_ lhs: Self, _ rhs: V)-> Self {
+        lhs - Self.init(rhs)
+    }
+    static func *(_ lhs: Self, _ rhs: V)-> Self {
+        lhs * Self.init(rhs)
+    }
+    static func /(_ lhs: Self, _ rhs: V)-> Self {
+        lhs / Self.init(rhs)
+    }
+    
+    static func +=(_ lhs: inout Self, _ rhs: V)  {
+        lhs = lhs+rhs
+    }
+    static func -=(_ lhs: inout Self, _ rhs: V)  {
+        lhs = lhs-rhs
+    }
+    static func *=(_ lhs: inout Self, _ rhs: V)  {
+        lhs = lhs*rhs
+    }
+    static func /=(_ lhs: inout Self, _ rhs: V)  {
+        lhs = lhs/rhs
     }
 }
 
