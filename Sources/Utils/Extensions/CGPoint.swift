@@ -1,5 +1,30 @@
 import CoreGraphics
 
+extension CGPoint: Dimension2D {
+    public var a: CGFloat {
+        get { x }
+        set { x = newValue }
+    }
+    
+    public var b: CGFloat {
+        get { y }
+        set { y = newValue }
+    }
+}
+
+extension CGSize: Dimension2D {
+    public var a: CGFloat {
+        get { width }
+        set { width = newValue }
+    }
+    
+    public var b: CGFloat {
+        get { height }
+        set { height = newValue }
+    }
+}
+
+
 extension CGPoint {
     // MARK: - Horizontal
     mutating func horizontallyClamp<R: RangeProtocol>(inside range: R) where R.Bound == CGFloat {
@@ -35,22 +60,3 @@ extension CGPoint {
         return copy
     }
 }
-
-extension Comparable {
-    mutating func clamp<R: RangeProtocol>(inside range: R) where R.Bound == Self {
-        self = self.clamped(inside: range)
-    }
-    
-    func clamped<R: RangeProtocol>(inside range: R) -> Self where R.Bound == Self {
-        max(min(self, range.upperBound), range.lowerBound)
-    }
-}
-
-protocol RangeProtocol {
-    associatedtype Bound: Comparable
-    var lowerBound: Bound {get}
-    var upperBound: Bound {get}
-}
-
-extension ClosedRange: RangeProtocol {}
-extension Range: RangeProtocol {}

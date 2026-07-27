@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension View {
+    @available(iOS 14.0, *)
     func geometry(_ completion: @escaping (CGSize)->()) -> some View {
         self.background (
             GeometryReader { proxy in
@@ -80,13 +81,15 @@ extension View {
 }
 
 extension View {
-    func onTapGesture<Success>(operation: sending @escaping @isolated(any) () async  -> Success) -> some View {
+    func onTapGesture<Success>(operation: @escaping @Sendable () async -> Success) -> some View {
+//    func onTapGesture<Success>(operation: sending @escaping isolated(any) () async  -> Success) -> some View {
         self.onTapGesture {
             Task(operation: operation)
         }
     }
     
-    func onTapGesture<Success, Failure: Error>(operation: sending @escaping @isolated(any) () async throws -> Success) -> some View {
+    func onTapGesture<Success, Failure: Error>(operation: @escaping @Sendable () async throws -> Success) -> some View {
+//    func onTapGesture<Success, Failure: Error>(operation: sending @escaping @isolated(any) () async throws -> Success) -> some View {
         self.onTapGesture {
             Task(operation: operation)
         }

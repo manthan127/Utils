@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 public extension Alertify {
@@ -27,3 +28,4 @@ public extension Alertify {
         }
     }
 }
+#endif

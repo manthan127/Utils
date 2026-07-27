@@ -7,8 +7,24 @@
 
 import Foundation
 
+protocol ArithmeticOperator {
+    static func +(_ lhs: Self, _ rhs: Self)-> Self
+    static func -(_ lhs: Self, _ rhs: Self)-> Self
+    static func *(_ lhs: Self, _ rhs: Self)-> Self
+    static func /(_ lhs: Self, _ rhs: Self)-> Self
+    
+//    static func +=(_ lhs: inout Self, _ rhs: Self)
+//    static func -=(_ lhs: inout Self, _ rhs: Self)
+//    static func *=(_ lhs: inout Self, _ rhs: Self)
+//    static func /=(_ lhs: inout Self, _ rhs: Self)
+}
+
+extension CGFloat: ArithmeticOperator {}
+extension Int: ArithmeticOperator {}
+extension Double: ArithmeticOperator {}
+
 protocol Dimension2D {
-    associatedtype V: FloatingPoint
+    associatedtype V: ArithmeticOperator
     var a:V {get set}
     var b:V {get set}
     
@@ -89,28 +105,3 @@ extension Dimension2D {
     }
 }
 
-
-extension CGPoint: Dimension2D {
-    public var a: CGFloat {
-        get { x }
-        set { x = newValue }
-    }
-    
-    public var b: CGFloat {
-        get { y }
-        set { y = newValue }
-    }
-}
-
-
-extension CGSize: Dimension2D {
-    public var a: CGFloat {
-        get { width }
-        set { width = newValue }
-    }
-    
-    public var b: CGFloat {
-        get { height }
-        set { height = newValue }
-    }
-}
