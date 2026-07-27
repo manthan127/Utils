@@ -1,29 +1,26 @@
 import CoreGraphics
 
-extension CGPoint: Dimension2D {
-    public var a: CGFloat {
-        get { x }
-        set { x = newValue }
+extension CGPoint: DimensionalVector {
+    public var arr: [CGFloat] {
+        get {
+            [x, y]
+        } set {
+            (x, y) = (newValue[0], newValue[1])
+        }
     }
-    
-    public var b: CGFloat {
-        get { y }
-        set { y = newValue }
-    }
+    static let elementsCount: Int = 2
 }
 
-extension CGSize: Dimension2D {
-    public var a: CGFloat {
-        get { width }
-        set { width = newValue }
+extension CGSize: DimensionalVector {
+    public var arr: [CGFloat] {
+        get {
+            [width, height]
+        } set {
+            (width, height) = (newValue[0], newValue[1])
+        }
     }
-    
-    public var b: CGFloat {
-        get { height }
-        set { height = newValue }
-    }
+    static let elementsCount: Int = 2
 }
-
 
 extension CGPoint {
     // MARK: - Horizontal
